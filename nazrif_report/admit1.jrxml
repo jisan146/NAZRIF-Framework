@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="admit1" columnCount="2" pageWidth="595" pageHeight="842" columnWidth="297" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e9b91513-bb22-4892-b519-12a3dbf1f953">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="140"/>
+	<parameter name="parameter1" class="java.lang.String"/>
+	<parameter name="parameter2" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select concat(s.sl,' ') sl,name,(select class from class where sl=s.class) class,
+concat((select exam_name from exam_name where class=s.class and exam_no=$P{parameter2}),' - ',date_format(now(),'%Y'))admit_tittle,
+(select section from section where sl=s.section) section,
+ date_format(now(),'%d-%b-%Y') idate,
+roll,
+case when s.client_id=7 then 'Batch' else 'Class' end classl,
+case when s.client_id=7 then 'Class' else 'Section' end Sectionl,
+case branch
+when 13 then 'DHAKA ZARIF SCHOOL'
+when 12 then 'DHAKA IDEAL CADET MADRASHA'
+when 3 then 'DARUL QURAN WAS SUNNAH'
+when 21 then 'KHAIRUN NISSA GIRL''S MADRASA'
+else
+(select institute from client_information where client_id=s.client_id)
+end isntitute,
+case when s.client_id=7 then 'Accountant' when s.client_id=10 then 'Principal' when s.client_id=3 then 'Director' else 'Principal' end sname1,
+case when s.client_id=7 then 'Examiner' when s.client_id=10 then 'Examiner' when s.client_id=3 then 'Secretary' else 'Examiner' end sname2,
+case branch
+when 13 then concat((select client_report_url from client_information where CLIENT_ID=s.client_id),'/userFiles/',s.client_id,'/webFile/logo2.jpg')
+
+else
+concat((select client_report_url from client_information where CLIENT_ID=s.client_id),'/userFiles/',s.client_id,'/webFile/logo.jpg')
+end logo,
+concat((select client_report_url from client_information where CLIENT_ID=s.client_id),'/userFiles/',s.client_id,'/webFile/logo.jpg')logo1,
+concat((select client_report_url from client_information where CLIENT_ID=s.client_id),'/userFiles/',s.client_id,'/webFile/sign1.jpg') s1,
+concat((select client_report_url from client_information where CLIENT_ID=s.client_id),'/userFiles/',s.client_id,'/webFile/sign2.jpg') s2,
+concat((select client_report_url from client_information where CLIENT_ID=s.client_id),'/userFiles/',s.client_id,'/webFile/admitFooter.png') s3,
+concat((select client_report_url from client_information where CLIENT_ID=s.client_id),'/userFiles/',s.client_id,'/studentImage/',image) image
+
+from student_information s,id_order i where i.user_id=s.sl  and order_by=$P{parameter1} order by s.class,s.section,s.sl]]>
+	</queryString>
+	<field name="sl" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="class" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="admit_tittle" class="java.lang.String"/>
+	<field name="section" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idate" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="roll" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="classl" class="java.lang.String"/>
+	<field name="Sectionl" class="java.lang.String"/>
+	<field name="isntitute" class="java.lang.String"/>
+	<field name="sname1" class="java.lang.String"/>
+	<field name="sname2" class="java.lang.String"/>
+	<field name="logo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="logo1" class="java.lang.String"/>
+	<field name="s1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="s2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="s3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="image" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="278" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="0877d129-1f77-4533-8704-ef91f77863c0" mode="Transparent" x="14" y="10" width="259" height="258"/>
+			</rectangle>
+			<image scaleImage="FillFrame">
+				<reportElement uuid="0dea79ab-7b2b-469a-a756-72f89389d541" x="196" y="125" width="67" height="67"/>
+				<imageExpression><![CDATA[$F{image}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="29242651-b772-4e4e-951d-c026aafd972c" x="14" y="94" width="259" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{admit_tittle}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="573338cc-2b2b-4099-81c5-c5712a919657" x="17" y="123" width="47" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="e18f7b8c-f0d1-4e52-8080-6594f395281c" x="71" y="123" width="109" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sl}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2f23243c-5a4c-42c3-9341-9c5d2cce8489" x="17" y="111" width="47" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="e1b4488d-ca9a-413d-b172-d80d72be1b5e" x="71" y="111" width="192" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5db112c0-9d4a-4f1f-9377-ca5d9f8ac090" x="17" y="147" width="47" height="13"/>
+				<textElement markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{classl}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9537d9bc-ad8a-4e14-8665-4463989c98d4" x="71" y="147" width="122" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{class}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="012ffba6-0e22-4d41-aff5-736478294726" x="17" y="159" width="47" height="13"/>
+				<textElement markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Sectionl}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="edf19c79-d41c-4fab-ae44-82f9f5dfbd40" x="71" y="159" width="122" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{section}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8eb1b8b5-e5be-4469-8349-ddd357743e6c" x="71" y="171" width="122" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="5688bf3e-71c1-4d8f-afdb-1b363a4587eb" x="17" y="171" width="47" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ISSUE DATE]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement uuid="8057ef9d-c485-44e2-8b0c-ac6b44b7845b" x="206" y="202" width="54" height="20"/>
+				<imageExpression><![CDATA[$F{s2}]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame">
+				<reportElement uuid="0bf9eb86-b841-48d8-a210-76ff795a4879" x="17" y="202" width="54" height="20"/>
+				<imageExpression><![CDATA[$F{s1}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="f508abe3-f293-4fc3-9335-cd11b1def1b7" x="17" y="225" width="54" height="12"/>
+				<textElement textAlignment="Center" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sname1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="744126c9-184b-46bb-b1c3-a1331eab24a5" x="17" y="224" width="54" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="c7414a39-d6ac-4f73-b209-1d1d4e3b8d2c" x="206" y="225" width="54" height="12"/>
+				<textElement textAlignment="Center" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sname2}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="b615b8de-9902-4df7-8f6a-d1a34072b5ca" x="206" y="224" width="54" height="1"/>
+			</line>
+			<image>
+				<reportElement uuid="a7ff8903-0fcd-4e8b-9ad3-e1fa1965477a" x="16" y="243" width="253" height="25"/>
+				<imageExpression><![CDATA[$F{s3}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement uuid="8b5ee784-64dc-44b2-990d-b6ae216e978b" x="14" y="240" width="259" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="42d73e59-781a-4721-94a9-68541fef31a1" x="67" y="123" width="4" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1d4b2afc-8fd5-4e42-b1da-a96ab0beb950" x="67" y="111" width="4" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0419aac9-49ec-47d8-8e55-718943b281b6" x="67" y="147" width="4" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="39725c1d-e611-49c2-8fa5-ceecae0add41" x="67" y="159" width="4" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7c1aded6-a764-4d13-b77e-9acdfef59380" x="67" y="171" width="4" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2f592f09-c6bc-4c5d-9d1a-a8155093e307" x="17" y="135" width="47" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ROLL]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="866c3669-0fb0-4d14-8bd6-bf5226230679" x="71" y="135" width="35" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{roll}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8b4728ba-b4f5-42cc-9539-993d9363c35a" x="67" y="135" width="4" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="23ebf8bf-838a-4931-bfa6-c6d0b197a9c0" x="14" y="85" width="259" height="13"/>
+				<textElement textAlignment="Center" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Admit Card]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="010e667d-6fc3-4a6e-b107-6da65bc1508a" x="14" y="52" width="259" height="33"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{isntitute}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame">
+				<reportElement uuid="08b42aee-2386-4f3e-8c48-c2afbf7d6f9a" x="121" y="12" width="45" height="45"/>
+				<imageExpression><![CDATA[$F{logo}]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+</jasperReport>

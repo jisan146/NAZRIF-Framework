@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>MyReports</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>net.sf.jasperreports.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>net.sf.jasperreports.nature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>admit1.jasper</name>
+			<type>1</type>
+			<location>C:/xampp/htdocs/tomcat/webapps/JasperReportsIntegration/reports/clientReport/admit1.jasper</location>
+		</link>
+		<link>
+			<name>admit1_1.jrxml</name>
+			<type>1</type>
+			<location>J:/nazrif/nazrif_report/admit1.jrxml</location>
+		</link>
+		<link>
+			<name>inventory allocation form - Copy.jrxml</name>
+			<type>1</type>
+			<location>F:/Downloads/inventory allocation form - Copy.jrxml</location>
+		</link>
+		<link>
+			<name>inventory allocation.jrxml</name>
+			<type>1</type>
+			<location>J:/inventory allocation.jrxml</location>
+		</link>
+		<link>
+			<name>member_receipt_pos.jrxml</name>
+			<type>1</type>
+			<location>J:/nazrif/nazrif_report/member_receipt_pos.jrxml</location>
+		</link>
+		<link>
+			<name>receipt_pos.jrxml</name>
+			<type>1</type>
+			<location>J:/nazrif/nazrif_report/receipt_pos.jrxml</location>
+		</link>
+	</linkedResources>
+</projectDescription>

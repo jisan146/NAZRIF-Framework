@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="salary_sheet_atd" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="33283f76-dca9-44c8-b8f5-6d630ff3e894">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="parameter1" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+t4.name client_institute,
+t4.address client_address,
+t4.phone client_phone,
+concat(t4.report_image_file,t4.image) client_logo,
+t4.report_footer_1,
+t4.report_footer_2,
+concat(t2.sl,' ') user_id,t2.name emp_name,t3.designation,
+SEC_TO_TIME( SUM(TIME_TO_SEC(timediff(exit_time, entry_time)))) total_hour,
+ROUND((t1.salary/(working_hour*salary_type*60*60))*( SUM(TIME_TO_SEC(timediff(exit_time, entry_time)))),2)tk,
+(select date_format(start_date,'%d-%b-%y') from salary_calculation_atfd where dml_by=$P{parameter1}) date_from,
+(select date_format(end_date,'%d-%b-%y') from salary_calculation_atfd where dml_by=$P{parameter1}) date_to,
+concat('Date From: ',(select date_format(start_date,'%d-%b-%y') from salary_calculation_atfd where dml_by=$P{parameter1}),' - To: ',(select date_format(end_date,'%d-%b-%y') from salary_calculation_atfd where dml_by=$P{parameter1})) print_date
+from
+	attendance t0,salary_entry t1 , employee t2, designation t3,org_details t4
+
+ where
+	t4.org_id=t0.org_id and
+	t0.user_id=t1.user_id and
+    t0.user_id=t2.sl and
+    t2.designation=t3.sl and
+    STR_TO_DATE(date_format(t0.dml_time,'%d-%b-%y'),'%d-%b-%y') between
+    (select start_date from salary_calculation_atfd where dml_by=$P{parameter1}) and
+    (select end_date from salary_calculation_atfd where dml_by=$P{parameter1}) and t0.org_id=(select org_id from employee where sl=$P{parameter1}) and
+    t0.branch=(select branch from employee where sl=$P{parameter1})
+
+     group by t2.sl,t2.name,t3.designation,t0.user_id]]>
+	</queryString>
+	<field name="client_institute" class="java.lang.String"/>
+	<field name="client_address" class="java.lang.String"/>
+	<field name="client_phone" class="java.lang.String"/>
+	<field name="client_logo" class="java.lang.String"/>
+	<field name="report_footer_1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="report_footer_2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="user_id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="emp_name" class="java.lang.String"/>
+	<field name="designation" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total_hour" class="java.lang.String"/>
+	<field name="tk" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date_from" class="java.lang.String"/>
+	<field name="date_to" class="java.lang.String"/>
+	<field name="print_date" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="tk_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{tk}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="100" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement uuid="b3d031fc-4635-4ae8-a4de-09b78518eba5" x="0" y="0" width="65" height="65"/>
+				<imageExpression><![CDATA[$F{client_logo}]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame">
+				<reportElement uuid="9386be2a-1b95-4633-8b2e-c5fcb51f51a9" x="490" y="0" width="65" height="65"/>
+				<imageExpression><![CDATA[$F{client_logo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="9cd9aece-fe9e-4a8b-96c6-ceb53bf38b72" x="65" y="0" width="425" height="28"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{client_institute}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e43c9a22-ce54-4484-a125-22afc3f6a4f6" x="65" y="28" width="425" height="16"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{client_address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="10e3b3c2-655d-46f7-9398-46c2103af747" x="65" y="44" width="425" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{client_phone}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="cba9282f-50de-4f50-8c7c-0a4bbf9f80d9" x="65" y="60" width="425" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Employee Salary Sheet]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="567f8c30-a9df-49b4-8f18-53d60962b4b8" x="0" y="80" width="555" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{print_date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="6af3f8a2-f3c4-4d25-b821-63dd87892a44" x="0" y="4" width="76" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Employee ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="606fd99b-5bf5-4af9-a0af-b49f980f2b7c" x="76" y="4" width="166" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="07344cad-380d-4155-9648-9fa2db7d0772" x="242" y="4" width="100" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Designation]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="984e9a6b-9e54-4349-8aee-5fc0c85a7de6" x="342" y="4" width="51" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Total Hour]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9c574499-dda1-4b70-9d5d-dac8c9598b6f" x="393" y="4" width="77" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1c908ece-de96-40ae-8239-e436b9120ba8" x="470" y="4" width="85" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Sign]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="46" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="92999547-1a4f-4b83-8fad-1409afceb872" x="0" y="0" width="76" height="46"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{user_id}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8b104e2a-448d-468f-9036-aa3e50925788" x="76" y="0" width="166" height="46"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{emp_name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="28a6a537-4baa-489a-aa1f-afdf481f13cb" x="242" y="0" width="100" height="46"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{designation}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="c9bc6157-fffa-441f-a7e3-19ef11e395e7" x="342" y="0" width="51" height="46"/>
+				<box leftPadding="0" rightPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_hour}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="29936745-ed8a-44e6-9a7d-31d687b1fcd7" x="393" y="0" width="77" height="46"/>
+				<box leftPadding="0" rightPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tk}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="775d975d-6713-4e66-8466-227f8661569d" x="470" y="0" width="85" height="46"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="9ed63686-151c-4bfb-b499-79e081ef94dd" x="0" y="0" width="275" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{report_footer_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="28609bba-4313-44ba-8977-6aca99f3d36b" x="280" y="0" width="275" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{report_footer_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="f8e82218-090f-4d74-927b-c66cc178c154" x="393" y="0" width="77" height="20"/>
+				<box leftPadding="0" rightPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tk_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a7a06390-29ee-4f90-905a-a3a52dd910dd" x="0" y="0" width="393" height="20"/>
+				<box rightPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total : ]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

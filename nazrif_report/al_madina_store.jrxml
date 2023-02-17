@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="al_madina_store" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fc372436-8864-4e0b-b170-8547113248b6">
+	<property name="ireport.zoom" value="1.3636363636363635"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="13"/>
+	<parameter name="parameter1" class="java.lang.String"/>
+	<parameter name="parameter2" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+ROW_NUMBER() OVER (
+		ORDER BY t0.sl
+	) r,
+    product_name,
+    in_box_qty,
+    load_on_transport,
+    return_product,
+    damage_product,
+    sale_product,
+    sale_price,
+	(sale_product-return_product-damage_product)*sale_price total_tk,
+    (select name from employee where sl=t2.sr)sr,
+    (select name from employee where sl=t2.dsr)dsr,
+    date_format(t2.dml_time,'%d-%b-%y') "Date"
+from
+	wholesale_product t0,
+    wholesale_product_entry t1,
+    pos_sr_assignment t2
+
+where
+	t0.product_code=t1.sl and
+    t2.transport=t0.transport and
+    date_format(t2.dml_time,'%d-%b-%y')=$P{parameter1} and
+    t0.transport=$P{parameter2}
+order by
+	t0.sl]]>
+	</queryString>
+	<field name="r" class="java.lang.Long"/>
+	<field name="product_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="in_box_qty" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="load_on_transport" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="return_product" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="damage_product" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sale_product" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sale_price" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total_tk" class="java.lang.Double"/>
+	<field name="sr" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dsr" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Date" class="java.lang.String"/>
+	<variable name="total_tk_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{total_tk}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="127" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="951911fa-ae91-49f2-ad10-057fee9dacc3" x="0" y="0" width="555" height="38"/>
+				<textElement textAlignment="Center">
+					<font fontName="Kalpurush" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[আল মদিনা ষ্টোর মুসলিমাবাদ কেরাণীগঞ্জ, ঢাকা]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="eac3fb28-628a-4324-b286-0c9176d4b056" x="0" y="35" width="555" height="24"/>
+				<textElement textAlignment="Center">
+					<font fontName="Kalpurush" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[অলিম্পিক ইন্ডাস্ট্রিজ লিমিটেড ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6a975525-bbeb-440f-b0b9-fcd8b93c4d41" x="2" y="59" width="96" height="24"/>
+				<textElement>
+					<font fontName="Kalpurush" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[এস আর নামঃ-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="206df94c-5dec-4767-aa6c-a22c6a22cf0a" x="0" y="83" width="96" height="24"/>
+				<textElement>
+					<font fontName="Kalpurush" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[মার্কেটের নামঃ-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2dcad8b-e62f-4e01-8420-312ef752f6b9" x="322" y="83" width="51" height="24"/>
+				<textElement>
+					<font fontName="Kalpurush" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[তারিখঃ-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="de9a4e36-8dcf-4bca-98b1-bcd3bdb2cda2" x="261" y="59" width="112" height="24"/>
+				<textElement>
+					<font fontName="Kalpurush" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ডি এস আর নামঃ-]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="615a64fa-9bd3-4c46-91c0-b40602e7033c" x="98" y="60" width="163" height="24"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="eb7b052e-484c-46fc-9304-70f2726c445e" x="374" y="60" width="182" height="24"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dsr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0b4e30c3-e02b-41bf-b746-03347707038f" x="374" y="84" width="163" height="24"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="fbf2c44b-398b-45ec-9fd1-148198c82b8a" x="0" y="0" width="41" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Kalpurush" size="12"/>
+				</textElement>
+				<text><![CDATA[নং]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2896c104-ddae-49e3-b619-d9243ca57bbd" x="41" y="0" width="175" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Kalpurush" size="12"/>
+				</textElement>
+				<text><![CDATA[পণ্যের নাম]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a69955b2-3e53-4708-93f8-b5a64c2ccc5f" x="216" y="0" width="61" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Kalpurush" size="12"/>
+				</textElement>
+				<text><![CDATA[কার্টুন পরিমাণ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="da77be47-98f7-4489-a16e-2c5c65b9282f" x="277" y="0" width="42" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Kalpurush" size="12"/>
+				</textElement>
+				<text><![CDATA[উত্তোলন]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="51d3ddf5-bf93-441e-aeb2-7ef07e55a3a7" x="319" y="0" width="36" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Kalpurush" size="12"/>
+				</textElement>
+				<text><![CDATA[ফেরত]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="672a1d1e-3467-43a1-8c9b-c48188904ce1" x="355" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Kalpurush" size="12"/>
+				</textElement>
+				<text><![CDATA[ডেমেজ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8cae5342-52a5-4736-81c5-3b1cade212a3" x="395" y="0" width="38" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Kalpurush" size="12"/>
+				</textElement>
+				<text><![CDATA[বিক্রয়]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a7569f1d-b2c3-46f2-94ab-0c85e70b6234" x="433" y="0" width="61" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Kalpurush" size="12"/>
+				</textElement>
+				<text><![CDATA[পণ্যের মূল্য]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="22e3acb7-99d5-4fc1-abc8-24b8743696b0" x="494" y="0" width="61" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Kalpurush" size="12"/>
+				</textElement>
+				<text><![CDATA[মোট টাকা]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="65f33e3f-a641-4514-9537-11ab87038403" x="0" y="0" width="41" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{r}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="75980412-c6b0-437f-bab6-a377b306c8a9" x="41" y="0" width="175" height="20"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{product_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6caff249-b587-415d-be53-82b22450b299" x="216" y="0" width="61" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{in_box_qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cfa5cd38-eb22-4a5f-824d-84f13bf3ea77" x="277" y="0" width="42" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{load_on_transport}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8f18b793-a9a9-4296-b6d8-606f88883539" x="319" y="0" width="36" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{return_product}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9d1d4aa7-895c-4215-aebf-dbb09f92ab04" x="355" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{damage_product}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8080e62b-40e2-492d-bdaa-5fca30b1e55e" x="395" y="0" width="38" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sale_product}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9dc95104-07f2-49a6-941f-3438fd657c21" x="433" y="0" width="61" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sale_price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b168c9c4-9c1a-49e8-b9a8-070d9bfada3f" x="494" y="0" width="61" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_tk}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="ffbde73c-896b-428e-b5ac-0bb5cd658ab9" x="494" y="0" width="61" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_tk_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

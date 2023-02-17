@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.14.0.final using JasperReports Library version 6.14.0-2ab0d8625be255bf609c78e1181801213e51db8f  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="test" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="70ee2a3c-cf0b-433b-9549-af8c420d4d08">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="smartedu"/>
+	<property name="ireport.jasperserver.url" value="http://server.nazrif.com:8080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="root"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/result_files/main_jrxml"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/result"/>
+	<parameter name="parameter1" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["E:\\temp\\xampp\\htdocs\\tomcat\\webapps\\JasperReportsIntegration\\reports\\clientReport\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parameter2" class="java.lang.String"/>
+	<parameter name="parameter3" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select user_id from gpa where oby=$P{parameter1}]]>
+	</queryString>
+	<field name="user_id" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="145" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="200" height="60" uuid="c5e7fdd0-faeb-45da-8f3e-1e54f2c63071"/>
+				<subreportParameter name="parameter1">
+					<subreportParameterExpression><![CDATA[$F{user_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="parameter2">
+					<subreportParameterExpression><![CDATA[$P{parameter2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="parameter3">
+					<subreportParameterExpression><![CDATA[$P{parameter3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["result_common_sub.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.14.0.final using JasperReports Library version 6.14.0-2ab0d8625be255bf609c78e1181801213e51db8f  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="inventory allocation form" language="javascript" pageWidth="595" pageHeight="842" columnWidth="487" leftMargin="54" rightMargin="54" topMargin="54" bottomMargin="14" uuid="2e4fe05a-9f53-4def-8938-a0f2d43c4020">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="rcu"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[select 
+	a.emp_id,
+    b.name,
+    c.designation,
+    d.department_name,
+    a.inventory_details,
+    a.qty,
+    b.join_date,
+    b.ladger_page,
+    b.phone,
+    b.email,
+    a.remarks,
+    '' sign,
+    '' sl
+from 
+	rcu_inventory_allocation a,
+    rcu_employee b,
+    rcu_designation c,
+    rcu_department d
+where 
+	b.designation=c.sl and
+    d.sl=b.department
+    ]]>
+	</queryString>
+	<field name="emp_id" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="emp_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="emp_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rcu_inventory_allocation"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rcu_employee"/>
+	</field>
+	<field name="designation" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="designation"/>
+		<property name="com.jaspersoft.studio.field.label" value="designation"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rcu_designation"/>
+	</field>
+	<field name="department_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="department_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="department_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rcu_department"/>
+	</field>
+	<field name="inventory_details" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="inventory_details"/>
+		<property name="com.jaspersoft.studio.field.label" value="inventory_details"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rcu_inventory_allocation"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="qty" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="qty"/>
+		<property name="com.jaspersoft.studio.field.label" value="qty"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rcu_inventory_allocation"/>
+	</field>
+	<field name="join_date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="join_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="join_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rcu_employee"/>
+	</field>
+	<field name="ladger_page" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ladger_page"/>
+		<property name="com.jaspersoft.studio.field.label" value="ladger_page"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rcu_employee"/>
+	</field>
+	<field name="phone" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="phone"/>
+		<property name="com.jaspersoft.studio.field.label" value="phone"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rcu_employee"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="email"/>
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rcu_employee"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="remarks" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="remarks"/>
+		<property name="com.jaspersoft.studio.field.label" value="remarks"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rcu_inventory_allocation"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sign" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="sign"/>
+		<property name="com.jaspersoft.studio.field.label" value="sign"/>
+	</field>
+	<field name="sl" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="sl"/>
+		<property name="com.jaspersoft.studio.field.label" value="sl"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="487" height="30" uuid="cee7b2c9-180e-444a-9b7c-0f0052f1320e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rupayan City Uttara]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="26" width="487" height="20" uuid="d5aec589-141e-47bf-9d48-79479f0cc1de"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[IT, ERP & MIS Department]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="38" width="487" height="29" uuid="0f3739b4-7bd9-43ae-862e-8740e4915f6a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Inventory Allocation Form]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="-2" y="-3" width="64" height="65" uuid="b9c7892d-ef52-42ca-9cec-603895719e17"/>
+				<imageExpression><![CDATA["89497498_2598773217048581_14605547391156224_n (1).jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="62" height="20" uuid="9f119b6e-58db-4635-bab3-6a7ab801e0cc"/>
+				<text><![CDATA[Employee ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="127" y="0" width="45" height="20" uuid="39f20925-1824-4b7c-a4f5-f93dd6b95c90"/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="363" y="0" width="56" height="20" uuid="19e55da1-5969-4fae-a493-0f615d291497"/>
+				<text><![CDATA[Designation]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="62" height="20" uuid="3d28c913-6380-4e05-b1d6-385e8c31a422"/>
+				<text><![CDATA[Department]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="127" y="20" width="45" height="20" uuid="4fe43f37-b5a1-433a-952c-7c614bb2235d"/>
+				<text><![CDATA[Join Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="62" height="20" uuid="2741fb58-5ce5-4c68-95cd-93de2829cba4"/>
+				<text><![CDATA[Phone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="20" width="93" height="20" uuid="64968bb3-46c0-4aca-bc03-75512c690518"/>
+				<text><![CDATA[Ledger Book's Page]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="0" width="65" height="20" uuid="1a0810d5-feef-414c-beb4-09ef4019aacc"/>
+				<textFieldExpression><![CDATA[' : '+$F{emp_id}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="172" y="0" width="191" height="20" uuid="cf9e1af8-b521-4a76-85cf-23cbdac14253"/>
+				<textFieldExpression><![CDATA[' : '+$F{name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="419" y="0" width="68" height="20" uuid="27f5dd41-6322-4c20-a474-c9b1616e6dae"/>
+				<textFieldExpression><![CDATA[' : '+$F{designation}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="20" width="65" height="20" uuid="e5364886-ada7-4cab-aa6e-551153007918"/>
+				<textFieldExpression><![CDATA[' : '+$F{department_name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="172" y="20" width="154" height="20" uuid="a7671007-a008-4d78-81d8-af892168cc83"/>
+				<textFieldExpression><![CDATA[' : '+$F{join_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="419" y="20" width="68" height="20" uuid="05d6bc5f-c386-4180-a5d5-07f2801d87f9"/>
+				<textFieldExpression><![CDATA[' : '+$F{ladger_page}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="40" width="92" height="20" uuid="5a4b106e-d2de-4208-8f5f-47f7cfeb3aec"/>
+				<textFieldExpression><![CDATA[' : '+$F{phone}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="154" y="40" width="45" height="20" uuid="e1926e00-3a1d-47cc-8791-18d6acfaed9b"/>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="199" y="40" width="247" height="20" uuid="e9148bd1-5813-4693-8680-b219a8334bec"/>
+				<textFieldExpression><![CDATA[' : '+$F{email}+'@rupayangroup.com']]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="26" height="14" uuid="74134a1d-e4a6-41bf-9588-2c6baaf88fe9"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="0" width="240" height="14" uuid="0bba75c1-9c53-491d-9ddd-2070459ebf4d"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Item Details]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="266" y="0" width="97" height="14" uuid="354e28bc-0f57-4464-ac6e-f95ca6b0226e"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Remarks]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="363" y="0" width="25" height="14" uuid="dd1e1f66-8d4d-4463-8495-57613bd1ca36"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qty.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="388" y="0" width="97" height="14" uuid="d2847c93-66e4-4601-9bda-f8431181c6b3"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[User Sign & Date]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="26" height="29" uuid="ea6acb73-7b25-44e9-b1f5-62baf481d3d2"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{sl}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="26" y="0" width="240" height="29" uuid="fd9538f9-0c33-4370-beab-1b8aa62fd5d9"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{inventory_details}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="0" width="97" height="29" uuid="f2d5e70a-b73f-450f-ad9d-6f2b14f4a694"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{remarks}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="363" y="0" width="25" height="29" uuid="d2f4867a-1086-4852-9ee4-f7cb20e91cd0"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="388" y="0" width="97" height="29" uuid="14617a2b-c62b-4abe-bce5-0c9b9be9d919"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{sign}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="10" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="487" height="10" uuid="1bb37adf-32c4-4385-927c-7d374bfc1a69"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Software Developed By : Tareq Rahman Jisan (Executive), IT,ERP & MIS - RCU]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="161" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="14" width="487" height="118" uuid="fdebd5b9-b7c2-4778-a49f-cf6f5e65865d"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Kalpurush" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["আমি "+$F{name}+" উপরোক্ত তালিকার পণ্য সমূহ বুঝিয়া পেয়েছি। উপরোক্ত পণ্য সমূহ শুধুমাত্র অফিসিয়াল কাজের জন্য ব্যবহার করব। আইটি পলিসি ৩ নং পৃষ্ঠা ও নীতিমালা ৬, ৮ নং নির্দেশনা সহ উপরোক্ত পণ্যের রক্ষণাবেক্ষণ দায়িত্ব আমার (ব্যবহারকারী) এবং ইহা বা ইহার কোন অংশ হারিয়ে গেলে/চুরি হয়ে গেলে অথবা ক্ষতি গ্রস্থ হলে এর দ্বায়- দায়িত্ব আমার উপর বর্তাবে। চাকুরী হতে অব্যহতি প্রদানকালে উহা যথাযথ ভাবে IT,ERP&MIS এর কর্তৃপক্ষকে ফেরত প্রদান করব।"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="397" y="146" width="81" height="15" uuid="7753c628-7af9-4b3d-b20d-044488d812c0"/>
+				<text><![CDATA[User Sign & Date]]></text>
+			</staticText>
+			<line>
+				<reportElement x="385" y="145" width="100" height="1" uuid="0ffab5c1-68ed-4997-ad77-585f8e2a8aac"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

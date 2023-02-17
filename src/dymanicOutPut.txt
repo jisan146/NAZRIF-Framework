@@ -1,0 +1,62 @@
+import websiteSocial from './pages/webSite/Social' 
+<Route  path="/website/Social" component={websiteSocial}/>  
+
+req.body.icon, req.body.link, req.body.style_class, req.body.duration 
+ 
+insert into social_link (icon, link, style_class, duration) values ( ?, ?, ?, ? ) 
+ 
+icon:"", 
+link:"", 
+style_class:"", 
+duration:""
+
+ 
+this.setState({icon:""}); 
+this.setState({link:""}); 
+this.setState({style_class:""}); 
+this.setState({duration:""}); 
+ 
+
+<td class="align-middle">{jdata.icon}</td>
+<td class="align-middle">{jdata.link}</td>
+<td class="align-middle">{jdata.style_class}</td>
+<td class="align-middle">{jdata.duration}</td> 
+ 
+ 
+
+
+<div class="form-group">
+<label for="name">Icon</label>
+<input class="form-control" required name="icon" id="icon" onChange={this.onchg} value= {this.state.icon}></input>
+</div>
+
+
+<div class="form-group">
+<label for="name">Link</label>
+<input class="form-control" required name="link" id="link" onChange={this.onchg} value= {this.state.link}></input>
+</div>
+
+
+<div class="form-group">
+<label for="name">Style Class</label>
+<input class="form-control" required name="style_class" id="style_class" onChange={this.onchg} value= {this.state.style_class}></input>
+</div>
+
+
+<div class="form-group">
+<label for="name">Duration</label>
+<input class="form-control" required name="duration" id="duration" onChange={this.onchg} value= {this.state.duration}></input>
+</div>
+ 
+ 
+ 
+
+<th>sl</th>
+<th>icon</th>
+<th>link</th>
+<th>style_class</th>
+<th>duration</th>
+<th>Delete</th> 
+ 
+ 
+ 

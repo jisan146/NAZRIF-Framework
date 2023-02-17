@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl"><name>rcu</name><driver>org.mariadb.jdbc.Driver</driver><username>root</username><password/><savePassword>true</savePassword><url>jdbc:mariadb://localhost:3306/jismbdco_nazrif</url><database/><serverAddress/></jdbcDataAdapter>
