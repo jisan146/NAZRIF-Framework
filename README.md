@@ -1,6 +1,9 @@
 # NAZRIF Framework
  My own framework for developed web based application using ReactJS, Node JS, MysqlDB, Oracle DB.
  
+  ## For More Details
+ open ReadME Folder and read the contents.
+ 
  ## Please feel free to contact me if any assistance is needed in the future
 
 - Email: jisan146@gmail.com
